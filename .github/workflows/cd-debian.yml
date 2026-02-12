@@ -17,6 +17,7 @@ jobs:
 
       - name: Déploiement du site
         run: |
-          rm -rf ~/site-web/*
-          cp -r ./* ~/site-web/
+          rm -rf /var/www/html/*
+          cp -r ./* /var/www/html/
+
 
