@@ -1,8 +1,10 @@
 name: CD - Déploiement sur GitHub Pages
 
 on:
-  push:
-    branches: ["main"]
+  workflow_run:
+    workflows: ["CI-Vérification HTML"]
+    types:
+      - completed
 
 permissions:
   contents: write
@@ -11,6 +13,7 @@ permissions:
 
 jobs:
   Deploiement:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - name: Récupération du code
